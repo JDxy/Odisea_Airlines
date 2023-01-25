@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+form {
+    color: black;
+    display: flex;
+    background-color: azure;
+    flex-direction: column;
+    width: 50%;
+}
