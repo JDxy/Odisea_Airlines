@@ -1,5 +1,5 @@
 <?php
-function create_fligths() {
+function create_places() {
 
     $resultado = [
         'error' => false,
@@ -11,17 +11,18 @@ function create_fligths() {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
         
-        
-        $dni = $_POST["dni"];
-        $avion = $_POST["matricula"];
-        $precio = $_POST["precio"];
+        $origen = $_POST["origen"];
+        $destino = $_POST["destino"];
+        $fecha_llegada = $_POST["fecha_llegada"];
+        $fecha_salida = $_POST["fecha_salida"];
 
-        $consultaSQL = "INSERT INTO vuelos (cod_vuelo,matricula,dni, precio)";
-        $consultaSQL .= 'values (null,'.$dni.', '.$avion.','.$precio.')';
-
+        $consultaSQL = "INSERT INTO destinos (cod_destino,destino,origen,fecha_llegada,fecha_salida)";
+        $consultaSQL .= 'values (null,"'.$origen.'", "'.$destino.'","'.$fecha_llegada.'","'.$fecha_salida.'")';
+        echo $consultaSQL;
         $sentencia = $conexion->prepare($consultaSQL);
         $sentencia->execute();
 
+    
         
 
     }catch (PDOException $error) {
@@ -32,7 +33,7 @@ function create_fligths() {
 
 
 if (isset($_POST['submit'])) {
-    create_fligths();
+    create_places();
 }
 
 ?> 
