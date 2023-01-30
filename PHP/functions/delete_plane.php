@@ -1,5 +1,5 @@
 <?php
-function del_cliente(){
+function del_plane(){
 
     $resultado = [
         'error' => false,
@@ -12,23 +12,25 @@ function del_cliente(){
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
         $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       
-        $sql = 'SELECT cod_datos_cliente FROM Datos_Clientes_Y_Clientes WHERE dni_cliente = "'.$_POST["dni"].'"';
         
+        $matricula = $_POST["matricula"];
 
+        $sql = 'SELECT cod_estado_avion FROM estado_aviones_y_aviones WHERE matricula_avion = "'.$matricula.'"';
+        
         $statement = $conexion->query($sql);
         
         $resultados = $statement->fetchAll();
 
         foreach($resultados as $fila) {
-            $cod_datos = $fila["cod_datos_cliente"];
+            $cod_avion = $fila["cod_estado_avion"];
         }
-        
 
-        $consultaSQL = 'DELETE FROM Datos_Clientes_Y_Clientes where dni_cliente = "'.$_POST["dni"].'"';
+
+        $consultaSQL = 'DELETE FROM estado_aviones_y_aviones where matricula_avion = "'.$matricula.'"';
         $conexion->query($consultaSQL);
 
-        $sql = 'SELECT idVuelos from vuelos where dni_cliente = "'.$_POST["dni"].'"';
+
+        $sql = 'SELECT idVuelos from vuelos where matricula_avion = "'.$matricula.'"';
     
         $statement = $conexion->query($sql);
         
@@ -41,19 +43,17 @@ function del_cliente(){
         $consultaSQL = 'DELETE FROM destinos_y_vuelos where idVuelos = '.$cod_vuelos.'';
         $conexion->query($consultaSQL);
 
-
-
-        $consultaSQL = 'DELETE FROM vuelos where Dni_cliente = "'.$_POST["dni"].'"';
+        $consultaSQL = 'DELETE FROM vuelos where matricula_avion = "'.$matricula.'"';
         $conexion->query($consultaSQL);
 
 
-
-        $consultaSQL = 'DELETE FROM clientes where Dni = "'.$_POST["dni"].'"';
+        $consultaSQL = 'DELETE FROM estado_aviones where cod_estado_avion = '.$cod_avion.'';
         $conexion->query($consultaSQL);
 
-        
-        $consultaSQL = 'DELETE FROM Datos_clientes where cod_datos_cliente = "'.$cod_datos.'"';
+        $consultaSQL = 'DELETE FROM aviones where matricula = "'.$matricula.'"';
+
         $conexion->query($consultaSQL);
+
 
     }catch (PDOException $error) {
         $resultado['error'] = true;
@@ -62,7 +62,7 @@ function del_cliente(){
 }
 
 if (isset($_POST['submit'])) {
-    del_cliente();
+    del_plane();
 }
 
 ?>

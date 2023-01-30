@@ -1,6 +1,4 @@
-<?php
-
-echo '<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,32 +37,18 @@ echo '<!DOCTYPE html>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li> -->
-        <li class="nav-item">
+
+        <?php if(isset($_COOKIE["usuario"])): ?>
+          <li class="nav-item">
             <a class="nav-link" href="reserve_flight.php">RESERVAR UN VUELO</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="update_user.php">AJUSTES DE CUENTA</a>
-        </li>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="update_user.php">AJUSTES DE CUENTA</a>
+          </li>
+        <?php endif; ?>
       </ul>
     </div>
   </div>
 </nav>
-
-
-
 <!-- CREAR APARTADO PARA ADMINS EN EL CUAL PUEDA ELIMINAR HACER SUS FUNCIONES -->
-'
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<!-- </head>
-<body> -->
-    
-</body>
-</html>

@@ -22,7 +22,7 @@ function update_client() {
         $datos_clientes = [
             "NumeroTelefono" => $_POST["numerotelefono"],
             "Email" => $_POST["email"],
-            "contraseña" => $_POST["contraseña"]
+            "contrasena" => $_POST["contraseña"]
         ];
 
 
@@ -34,15 +34,16 @@ function update_client() {
 
 
     foreach ($cliente as $key => $value) {
+    
         if ($value != "") {
             
             // echo $key;
             $consultaSQL = "UPDATE clientes";
-            $consultaSQL .= ' SET '.$key.' = "'.$value.'" WHERE dni = "'.$dni.'"';
+            $consultaSQL .= ' SET '.$key.' = "'.$value.'" WHERE dni = "'.$dni.'";';
 
             echo $consultaSQL;
             $sentencia = $conexion->prepare($consultaSQL);
-            $sentencia->execute($cliente);
+            $sentencia->execute();
 
         }
     };
@@ -54,7 +55,7 @@ function update_client() {
             echo $consultaSQL;
 
             $sentencia = $conexion->prepare($consultaSQL);
-            $sentencia->execute($datos_clientes);
+            $sentencia->execute();
         }
     }
 
@@ -66,7 +67,9 @@ function update_client() {
 
 
 if (isset($_POST['submit'])) {
+    
     update_client();
+
 }
 
 ?>
