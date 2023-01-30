@@ -1,5 +1,5 @@
 <?php
-function create_client() {
+function login_client() {
 
     $resultado = [
         'error' => false,
@@ -14,8 +14,8 @@ function create_client() {
         
         $valid = "true";
 
-        $dni = "dada";
-        $contraseña = "josedlaspalmas4@gmail.comadadaad ";
+        $dni = "12345678B";
+        $contraseña = "22223";
 
         $consultaSQL = "SELECT dni FROM clientes";
 
@@ -56,9 +56,6 @@ function create_client() {
             array_push($array,$filas[$i]["contrasena"]);
         }
 
-        print_r($array);
-    
-
         if (!in_array($contraseña,$array)){
             $valid = "false";
             echo $contraseña;
@@ -67,26 +64,22 @@ function create_client() {
             return $valid;
         }
 
-
-
-    
-        // print_r($array);
-     
-
-        
-
+        if ($valid == "true") {
+            setcookie("usuario",$dni, time() + (86400 * 30)); 
+            echo "El cliente se ha logeado correctamente";
+        }
 
 
     }catch (PDOException $error) {
-        // $resultado['error'] = true;
-        // $resultado['mensaje'] = $error->getMessage();
+        $resultado['error'] = true;
+        $resultado['mensaje'] = $error->getMessage();
     }
 }
 
 
 if (isset($_POST['submit'])) {
     
-    create_client();
+    login_client();
 
 }
 

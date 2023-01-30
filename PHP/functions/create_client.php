@@ -1,12 +1,5 @@
 <?php
 
-
-
-/**
- * Undocumented function
- *
- * @return void
- */
 function create_client() {
 
     $resultado = [
