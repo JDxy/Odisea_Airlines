@@ -1,5 +1,5 @@
 <?php
-function login_client() {
+function login_admin() {
 
     $resultado = [
         'error' => false,
@@ -14,39 +14,30 @@ function login_client() {
         
         $valid = "true";
 
-        $dni = $_POST["dni"];
-        $contraseña = $_POST["contraseña"];
+        $cod_admin = "1";
+        $contraseña = "22319";
 
-        $consultaSQL = "SELECT dni FROM clientes";
+        $consultaSQL = "SELECT cod_admin FROM administradores";
 
         $resultado = $conexion->query($consultaSQL);
         $filas = $resultado->fetchAll();
         $array = [];
         for ($i=0; $i < count($filas); $i++) { 
-            array_push($array,$filas[$i]["dni"]);
+            array_push($array,$filas[$i]["cod_admin"]);
         }
 
-        if (!in_array($dni,$array)) {
+        if (!in_array($cod_admin,$array)) {
 
             $valid = "false";
-            echo "El dni no existe";
+            echo "El codigo no existe";
 
             return $valid;
         
         }
 
- 
 
-    #Alinear los codigos
-        $query = $conexion->prepare('SELECT cod_datos_cliente FROM Datos_Clientes_Y_Clientes WHERE dni_cliente = "'.$dni.'"');
-        $query->execute();
+        $consultaSQL = "SELECT contrasena FROM administradores WHERE cod_admin = ".$cod_admin." ";
 
-        $row = $query->fetch(PDO::FETCH_ASSOC);
-        $cod = $row["cod_datos_cliente"];
-
-
-        $consultaSQL = "SELECT D.contrasena FROM Datos_clientes D, Datos_clientes_y_clientes DC WHERE DC.cod_datos_cliente = ".$cod." AND D.cod_datos_cliente = ".$cod." ";
-        // echo $consultaSQL;
         $resultado = $conexion->query($consultaSQL);
         $filas = $resultado->fetchAll();
         $array = [];
@@ -60,12 +51,12 @@ function login_client() {
             $valid = "false";
             echo $contraseña;
             echo "La contraseña no es valida";
-
             return $valid;
         }
 
         if ($valid == "true") {
-            setcookie("usuario",$dni, time() + (86400 * 30)); 
+            setcookie("admin",$cod_admin, time() + (86400 * 30)); 
+            echo "El admin se ha logeado correctamente";
         }
 
 
@@ -78,13 +69,14 @@ function login_client() {
 
 if (isset($_POST['submit'])) {
     
-    login_client();
+    login_admin();
     header("Location: index.php");
+    exit;
 
 }
 
 if(isset($_POST['close'])){
-    setcookie("usuario", "", time()-(86400 * 30));
+    setcookie("admin", "", time()-(86400 * 30));
     header("Location: index.php");
 }
 

@@ -21,31 +21,45 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="login_user.php">LOGIN</a>
+          <a class="nav-link text-primary" aria-current="page" href="user_login_user.php">LOGIN USER</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.php">REGISTRARSE</a>
+          <a class="nav-link text-primary" href="user_register.php">REGISTRARSE</a>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ADMINISTRATOR
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">LOGIN</a></li>
-            <li><a class="dropdown-item" href="#">REGISTRARSE</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> -->
-
-        <?php if(isset($_COOKIE["usuario"])): ?>
-          <li class="nav-item">
-            <a class="nav-link" href="reserve_flight.php">RESERVAR UN VUELO</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="update_user.php">AJUSTES DE CUENTA</a>
+        <li class="nav-item">
+          <a class="nav-link text-primary" href="admin_login_admin.php">LOGIN ADMIN</a>
+        </li>
+        <?php if(isset($_COOKIE["admin"])): ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ADMINISTRATOR
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="admin_del_user.php">Delete client</a></li>
+              <li><a class="dropdown-item" href="admin_del_plane.php">Delete plane</a></li>
+              <li><a class="dropdown-item" href="admin_del_place.php">Delete place</a></li>
+              <li><a class="dropdown-item" href="admin_new_place.php">New place</a></li>
+              <li><a class="dropdown-item" href="admin_new_plane.php">New plane</a></li>
+            </ul>
           </li>
         <?php endif; ?>
+        <?php if(isset($_COOKIE["usuario"]) and !isset($_COOKIE["admin"])){ ?>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="user_reserve_flight.php">RESERVAR UN VUELO</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-primary" href="user_update_user.php">AJUSTES DE CUENTA</a>
+          </li>
+        <?php }else{
+          echo '
+          <li class="nav-item">
+            <p class="nav-link text-secondary">RESERVAR UN VUELO</p>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link text-secondary">AJUSTES DE CUENTA</p>
+          </li>';
+          
+        }?>
       </ul>
     </div>
   </div>

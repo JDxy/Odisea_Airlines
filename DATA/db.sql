@@ -72,7 +72,7 @@ CREATE TABLE Destinos_Y_Vuelos (
 
 CREATE TABLE Administradores (
     cod_admin INT PRIMARY KEY AUTO_INCREMENT,
-    Contrasena VARCHAR(255)
+    contrasena VARCHAR(255)
 );
 
 ALTER TABLE Destinos_Y_Vuelos ADD FOREIGN KEY (cod_Destino) REFERENCES Destinos (cod_Destino);

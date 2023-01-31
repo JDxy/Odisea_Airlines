@@ -1,5 +1,5 @@
 <?php
-function create_places() {
+function delete_flight() {
 
     $resultado = [
         'error' => false,
@@ -11,20 +11,17 @@ function create_places() {
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
         $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
         
-        $origen = $_POST["origen"];
-        $destino = $_POST["destino"];
-        $fecha_llegada = $_POST["fecha_llegada"];
-        $fecha_salida = $_POST["fecha_salida"];
-        $precio = $_POST["precio"];
+        $cod_vuelo = $_POST["Idvuelo"];
+            
+        $consultaSQL = 'DELETE FROM destinos_y_vuelos WHERE IdVuelos = '.$cod_vuelo.'';
 
-        $consultaSQL = "INSERT INTO destinos";
-        $consultaSQL .= ' values (null,"'.$origen.'", "'.$destino.'","'.$fecha_llegada.'","'.$fecha_salida.'",'.$precio.')';
-        echo $consultaSQL;
         $sentencia = $conexion->prepare($consultaSQL);
         $sentencia->execute();
-
-    
         
+        $consultaSQL = 'DELETE FROM vuelos WHERE IdVuelos = '.$cod_vuelo.'';
+
+        $sentencia = $conexion->prepare($consultaSQL);
+        $sentencia->execute();
 
     }catch (PDOException $error) {
         $resultado['error'] = true;
@@ -33,8 +30,8 @@ function create_places() {
 }
 
 
-if (isset($_POST['submit'])) {
-    create_places();
+if (isset($_POST['Idvuelo'])) {
+    delete_flight();
 }
 
 ?> 

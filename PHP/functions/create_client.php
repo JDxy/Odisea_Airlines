@@ -7,7 +7,7 @@ function create_client() {
         'mensaje' => 'Exito'
     ];
 
-    $config = include "../../../config.php";
+    $config = include "../../config.php";
     try {
    
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
@@ -42,11 +42,11 @@ function create_client() {
         $conexion->query($consultaSQL);
 
 
-        $consultaSQL = 'INSERT INTO Datos_clientes_Y_Clientes SELECT D.cod_datos_cliente,"'.$dni.'" FROM Datos_Clientes D ORDER BY cod_datos_cliente desc LIMIT 1';
-
-        $conexion->query($consultaSQL);
+        $consultaSQL = 'INSERT INTO Datos_clientes_Y_Clientes SELECT "'.$dni.'", D.cod_datos_cliente FROM Datos_Clientes D ORDER BY cod_datos_cliente desc LIMIT 1';
 
         echo $consultaSQL;
+        $conexion->query($consultaSQL);
+
         
 
     }catch (PDOException $error) {
@@ -57,7 +57,7 @@ function create_client() {
 
 
 if (isset($_POST['submit'])) {
-    
+    header("Location: user_login_user.php");
     create_client();
 
 }

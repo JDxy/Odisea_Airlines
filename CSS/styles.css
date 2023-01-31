@@ -317,11 +317,6 @@ caption {
   text-align: left;
 }
 
-th {
-  text-align: inherit;
-  text-align: -webkit-match-parent;
-}
-
 thead,
 tbody,
 tfoot,
@@ -11465,11 +11460,15 @@ textarea.form-control-lg {
   }
 }
 html {
+  min-height: 100%;
+  position: relative;
   scroll-padding-top: calc(4.5rem - 1px);
 }
 
 body {
   letter-spacing: 0.0625em;
+  margin: 0;
+  margin-bottom: 40px;
 }
 
 #mainNav {
@@ -11696,15 +11695,20 @@ body {
 }
 
 .footer {
+  background-color: black;
   position: absolute;
-  top: 760px;
+  bottom: 0;
   width: 100%;
-  padding: 5rem 0;
+  height: 40px;
+  color: white;
 }
+
+
 
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 50%;
   margin-left: 25%;
   margin-right: 25%;
@@ -11717,10 +11721,36 @@ input:focus {
 
 form .submit {
   margin-top: 20px;
-  margin-left: 45%;
-  width: 70px;
+  width: 110px;
+  border: 1px solid transparent;
 }
 
 .submit {
   box-shadow: #000;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #1e1a6f;
+  color: white;
+  text-align: center;
+
+}
+
+table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.del {
+  background:url("../assets/trash-bin.png");
+  color: transparent;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

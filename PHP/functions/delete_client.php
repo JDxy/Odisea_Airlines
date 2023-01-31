@@ -6,7 +6,7 @@ function del_cliente(){
         'mensaje' => 'Exito'
     ];
     
-    $config = include "../../../config.php";
+    $config = include "../../config.php";
     try {
 
         $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
