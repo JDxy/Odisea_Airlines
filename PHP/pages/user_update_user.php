@@ -37,7 +37,7 @@ include "../parts/header.php";
 ?>
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-
+    <h2>Actualizar tus datos</h2>
         <input type="hidden" name="dni" id="dni" value="<?php echo $_COOKIE["usuario"] ?>">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre">

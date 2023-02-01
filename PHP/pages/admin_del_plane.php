@@ -17,6 +17,7 @@ include "../parts/header.php";
 
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Eliminar avion</h2>
         <label for="matricula">Matricula</label>
         <input type="text" name="matricula" id="matricula" require>
         <input type="submit" name="submit" class="submit" id="submit" value="Enviar">

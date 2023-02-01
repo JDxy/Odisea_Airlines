@@ -15,6 +15,7 @@ include "../parts/header.php";
 ?>
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Crear avion</h2>
         <label for="matricula">Matricula</label>
         <input type="text" name="matricula" id="matricula">
         <label for="años_servicio">Años de servicio</label>

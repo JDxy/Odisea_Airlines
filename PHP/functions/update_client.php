@@ -1,4 +1,28 @@
 <?php
+/**
+* Function update_client
+* This function updates an existing client in the database.
+* It starts by including a config file to setup a database connection using PDO.
+* Then, it retrieves the client's DNI and data from a submitted form.
+* The function then updates the "clientes" and "Datos_Clientes" tables with the new data.
+* The relationship between the client and their details is updated by finding the "cod_datos_cliente" value using a SELECT query on the "Datos_Clientes_Y_Clientes" table.
+* If an error occurs, it is caught and added to the result array as an 'error' and 'message' key.
+* @author [Author Name]
+* @return array Result of the operation with 'error' and 'message' keys.
+* @throws PDOException If there is an error connecting to the database.
+* @var PDO $conexion Connection to the database.
+* @var array $config Configuration array for the database connection.
+* @var string $dsn Data source name for the database connection.
+* @var string $dni DNI of the client.
+* @var array $cliente Array of client data including "Nombre" and "Apellidos".
+* @var array $datos_clientes Array of client details including "NumeroTelefono", "Email", and "contraseña".
+* @var PDOStatement $query Prepared statement for fetching the "cod_datos_cliente" from the "Datos_Clientes_Y_Clientes" table.
+* @var array $row Result of the SELECT query.
+* @var string $cod "cod_datos_cliente" value.
+* @var string $consultaSQL SQL query for updating data in the "clientes" and "datos_clientes" tables.
+* @var PDOStatement $sentencia Prepared statement for executing the update queries.
+*/
+
 function update_client() {
 
     $resultado = [
@@ -41,7 +65,7 @@ function update_client() {
             $consultaSQL = "UPDATE clientes";
             $consultaSQL .= ' SET '.$key.' = "'.$value.'" WHERE dni = "'.$dni.'";';
 
-            echo $consultaSQL;
+
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->execute();
 
@@ -52,7 +76,7 @@ function update_client() {
         if ($value != "") {
             $consultaSQL = "UPDATE datos_clientes";
             $consultaSQL .= ' SET '.$key.' = "'.$value.'" WHERE cod_datos_cliente = "'.$cod.'"';
-            echo $consultaSQL;
+
 
             $sentencia = $conexion->prepare($consultaSQL);
             $sentencia->execute();
@@ -72,6 +96,5 @@ if (isset($_POST['submit'])) {
 
 }
 
-
-
 ?>
+

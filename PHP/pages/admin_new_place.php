@@ -14,6 +14,7 @@ include "../parts/header.php";
 ?>
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Nuevo destino</h2>
         <label for="origen">Origen</label>
         <input type="text" name="origen" id="origen">
         <label for="destino">destino</label>

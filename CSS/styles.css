@@ -157,6 +157,7 @@ h6, .h6 {
 }
 
 p {
+  align-items: center;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -11640,7 +11641,7 @@ body {
 
 .signup-section {
   padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("../assets/img/bg-signup.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("../../assets/img/por-que-el-cielo-es-tan-bonito.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11706,6 +11707,7 @@ body {
 
 
 form {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11713,6 +11715,12 @@ form {
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 20%;
+  background-color: #141619;
+  color: white;
+  box-shadow: 10px 10px 5px 0px #1e1a6f;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 input:focus {
@@ -11729,28 +11737,59 @@ form .submit {
   box-shadow: #000;
 }
 
+form .submit:hover {
+  background-color: #1e1a6f;
+  color: white;
+  border: 1px solid rgba(246,250,62,1);
+}
+
+form .del:hover {
+  background-color: #1e1a6f;
+  color: transparent;
+  border: 1px solid rgba(246,250,62,1);
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
 td {
-  text-align: center;
   vertical-align: middle;
 }
 
 th {
   background-color: #1e1a6f;
   color: white;
-  text-align: center;
 
 }
 
+th,td {
+  text-align: left;
+  padding: 8px;
+  color: white;
+}
+
 table {
+  border-collapse: collapse;
+  border-spacing: 0;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 
 .del {
   background:url("../assets/trash-bin.png");
   color: transparent;
-  background-size: 25%;
+  background-size: 20%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 920px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
 }

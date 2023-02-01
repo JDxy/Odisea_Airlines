@@ -1,5 +1,33 @@
 <?php
 
+/**
+ * Function create_client
+ * 
+ * This function creates a new client in the database.
+ * It starts by including a config file to setup a database connection using PDO.
+ * Then, it fetches data from a submitted form and inserts it into two tables: "clientes" and "Datos_Clientes".
+ * Finally, it creates a relationship between the client and their details by inserting data into the "Datos_clientes_Y_Clientes" table.
+ * If an error occurs, it is caught and an error message is added to the result array.
+ * 
+ * @author [Author Name]
+ * 
+ * @return array Result of the operation with 'error' and 'message' keys.
+ * 
+ * @throws PDOException If there is an error connecting to the database.
+ * 
+ * @var PDO $conexion Connection to the database.
+ * @var array $config Configuration array for the database connection.
+ * @var string $dsn Data source name for the database connection.
+ * @var string $dni DNI of the client.
+ * @var string $Nombre First name of the client.
+ * @var string $Apellidos Last name of the client.
+ * @var string $consultaSQL SQL query for inserting data into the "clientes" table.
+ * @var PDOStatement $sentencia Prepared statement for executing the "clientes" insert query.
+ * @var string $NumeroTelefono Telephone number of the client.
+ * @var string $Email Email of the client.
+ * @var string $contraseña Password of the client.
+ */
+
 function create_client() {
 
     $resultado = [
@@ -57,7 +85,7 @@ function create_client() {
 
 
 if (isset($_POST['submit'])) {
-    header("Location: user_login_user.php");
+    header("Location: user_login.php");
     create_client();
 
 }

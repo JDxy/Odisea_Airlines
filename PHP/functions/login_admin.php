@@ -1,4 +1,28 @@
+
+
 <?php
+/**
+* Function login_admin
+* This function is used to log in an administrator into the system.
+* It starts by including the config file to set up a database connection using PDO.
+* Then, it fetches data from a submitted form, validates the administrator's code and password, and sets a cookie with the administrator's code if the validation is successful.
+* The function returns 'El codigo no existe' if the administrator's code does not exist in the database, and 'La contraseña no es valida' if the password is incorrect.
+* If a successful login is made, it will display 'El admin se ha logeado correctamente'.
+* If an error occurs, it is caught and an error message is added to the 'resultado' array with the 'error' and 'mensaje' keys.
+* @author [Author Name]
+* @return string Result of the operation in a string format.
+* @throws PDOException If there is an error connecting to the database.
+* @var PDO $conexion Connection to the database.
+* @var array $config Configuration array for the database connection.
+* @var string $dsn Data source name for the database connection.
+* @var string $cod_admin Administrator's code.
+* @var string $contraseña Administrator's password.
+* @var string $valid Flag for indicating whether the validation is successful or not.
+* @var string $consultaSQL SQL query for fetching data from the 'administradores' table.
+* @var PDOStatement $resultado Result of executing the SQL query.
+* @var array $filas Rows of data from the 'administradores' table.
+* @var array $array Array for storing the administrator's codes or passwords.
+*/
 function login_admin() {
 
     $resultado = [
@@ -14,8 +38,8 @@ function login_admin() {
         
         $valid = "true";
 
-        $cod_admin = "1";
-        $contraseña = "22319";
+        $cod_admin = $_POST["cod_admin"];
+        $contraseña = $_POST['contraseña'];;
 
         $consultaSQL = "SELECT cod_admin FROM administradores";
 
@@ -81,3 +105,4 @@ if(isset($_POST['close'])){
 }
 
 ?>
+
