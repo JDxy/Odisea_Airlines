@@ -1,4 +1,29 @@
 <?php
+/**
+* Function reserve_flight
+* This function reserves a flight for a client.
+* It starts by including a config file to setup a database connection using PDO.
+* Then, it queries the database to retrieve all flight matriculas and randomly selects one.
+* It also fetches data from a submitted form, including the client's DNI and selected destination.
+* The matricula, DNI, and destination are then inserted into the "vuelos" and "destinos_y_vuelos" tables, respectively.
+* If an error occurs, it is caught and an error message is added to the result array.
+* The function returns a success message if the flight reservation was successful.
+* @author [Author Name]
+* @return string Success message if the flight reservation was successful.
+* @throws PDOException If there is an error connecting to the database.
+* @var PDO $conexion Connection to the database.
+* @var array $config Configuration array for the database connection.
+* @var string $dsn Data source name for the database connection.
+* @var string $dni DNI of the client.
+* @var string $destino_seleccionado Selected destination of the client.
+* @var string $consultaSQL SQL query for inserting data into the "vuelos" and "destinos_y_vuelos" tables.
+* @var PDOStatement $sentencia Prepared statement for executing the insert queries.
+* @var array $resultados Results of the flight matriculas query.
+* @var string $rand_matricula Randomly selected matricula.
+* @var string $matricula Matricula of the selected flight.
+*/
+
+
 function reserve_flight() {
 
     $resultado = [
@@ -51,10 +76,9 @@ if (isset($_POST['submit'])) {
     if (isset($_COOKIE["usuario"])){
         reserve_flight();
         echo "Vuelo reservado";
-    }else{
-        echo "No estas logueado";
     }
     
 }
 
 ?> 
+

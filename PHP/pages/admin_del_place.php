@@ -14,6 +14,7 @@ include "../parts/header.php";
 ?>
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Eliminar destino</h2>
         <label for="cod_destino">Codigo destino</label>
         <input type="text" name="cod_destino" id="cod_destino">
         <input type="submit" name="submit" class="submit" id="submit" value="Enviar">

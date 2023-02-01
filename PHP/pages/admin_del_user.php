@@ -17,6 +17,7 @@ include "../parts/header.php";
 
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Eliminar cliente</h2>
         <label for="dni">DNI</label>
         <input type="text" name="dni" id="dni" require>
         <input type="submit" class="submit" name="submit" id="submit" value="Enviar">

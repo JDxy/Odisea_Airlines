@@ -20,6 +20,7 @@ include "../parts/header.php";
 
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+  <h2>Reservar vuelo</h2>
     <input type="hidden" name="dni" id="dni" value="<?php echo $_COOKIE["usuario"] ?>" require>
     <?php
         echo "<table>";

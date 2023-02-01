@@ -11,6 +11,7 @@ include "../parts/header.php";
 
 
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <h2>Registrarse</h2>
         <label for="dni">DNI</label>
         <input type="text" name="dni" id="dni" require>
         <label for="nombre">Nombre</label>
