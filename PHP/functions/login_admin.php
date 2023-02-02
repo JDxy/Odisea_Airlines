@@ -94,14 +94,14 @@ function login_admin() {
 if (isset($_POST['submit'])) {
     
     login_admin();
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 
 }
 
 if(isset($_POST['close'])){
     setcookie("admin", "", time()-(86400 * 30));
-    header("Location: index.php");
+    header("Location: ../../index.php");
 }
 
 ?>

@@ -109,13 +109,13 @@ function login_client() {
 if (isset($_POST['submit'])) {
     
     login_client();
-    header("Location: index.php");
+    header("Location: ../../index.php");
 
 }
 
 if(isset($_POST['close'])){
     setcookie("usuario", "", time()-(86400 * 30));
-    header("Location: index.php");
+    header("Location: ../../index.php");
 }
 
 ?>
